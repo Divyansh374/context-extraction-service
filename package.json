@@ -1,0 +1,31 @@
+{
+  "name": "context-extraction-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint src",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.2",
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.9.0",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.8",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.66.0"
+  }
+}
