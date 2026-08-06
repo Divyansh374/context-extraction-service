@@ -1,16 +1,34 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "../utils/AppError.js";
+import nlp from "compromise";
 
 interface CustomBody {
     topic: string;
     industry: string;
 }
 
-interface RequestData extends Request {
-    body: CustomBody;
+interface Term {
+    text: string;
+    tags: string[];
 }
 
-export const validateRequest = (req: RequestData, res: Response, next: NextFunction) => {
+interface Token {
+    terms: Term[];
+}
+
+interface PipelineInput {
+    topic: string;
+    industry: string;
+    keywords: Term[];
+}
+
+type Empty = Record<string, never>;
+
+export const validateRequest = (
+    req: Request<Empty, Empty, CustomBody>,
+    res: Response,
+    next: NextFunction,
+) => {
     if (!req.body) {
         return next(new AppError(401, "Enter a valid request"));
     }
@@ -27,6 +45,25 @@ export const validateRequest = (req: RequestData, res: Response, next: NextFunct
     } else if (industry.length > 100) {
         return next(new AppError(401, "Industry should be at most 100 characters long"));
     }
+
+    topic = topic.replace(/\s+/g, " ").trim().toLowerCase();
+    industry = industry.replace(/\s+/g, " ").trim().toLowerCase();
+
+    const doc = nlp(topic);
+    const tokens = doc.json() as Token[];
+
+    const keywords: Term[] = tokens
+        .map((token: Token) => token.terms)
+        .flat()
+        .filter((term: Term) => term.tags.includes("Noun") || term.tags.includes("Adjective"));
+
+    const pipelineInput: PipelineInput = {
+        topic,
+        industry,
+        keywords,
+    };
+
+    req.pipelineInput = pipelineInput;
 };
 
 export const executePipeline = () => {};
