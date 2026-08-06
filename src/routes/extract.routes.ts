@@ -1,5 +1,8 @@
-import express, { type Router } from "express";
+import express from "express";
+import { extractContent } from "../controllers/extract.controller.js";
 
-const router: Router = express.Router();
+const router = express.Router();
+
+router.post("/", extractContent);
 
 export default router;
