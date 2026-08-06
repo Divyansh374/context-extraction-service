@@ -1,0 +1,15 @@
+export const STOP_WORDS = new Set([
+    "near",
+    "many",
+    "much",
+    "very",
+    "really",
+    "quite",
+    "just",
+    "also",
+    "often",
+    "always",
+    "never",
+    "today",
+    "tomorrow",
+]);

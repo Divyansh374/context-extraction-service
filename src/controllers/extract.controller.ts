@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "../utils/AppError.js";
+import { executePipeline } from "../services/pipeline.service.js";
 
 interface CustomBody {
     topic: string;
@@ -36,5 +37,5 @@ export const validateRequest = (
 };
 
 export const extractContent = async (req: Request, res: Response): Promise<void> => {
-    res.status(200).json(req.pipelineInput);
+    res.status(200).json(executePipeline(req));
 };

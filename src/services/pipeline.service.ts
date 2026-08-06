@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { STOP_WORDS } from "../constants/stopWords.js";
 import nlp from "compromise";
 
 interface Term {
@@ -20,22 +21,6 @@ export interface PipelineInput {
 export const extractKeywords = (req: Request, res: Response, next: NextFunction) => {
     let { topic, industry } = req.body;
 
-    const stopWords = new Set([
-        "near",
-        "many",
-        "much",
-        "very",
-        "really",
-        "quite",
-        "just",
-        "also",
-        "often",
-        "always",
-        "never",
-        "today",
-        "tomorrow",
-    ]);
-
     topic = topic.replace(/\s+/g, " ").trim().toLowerCase();
     industry = industry.replace(/\s+/g, " ").trim().toLowerCase();
 
@@ -55,7 +40,7 @@ export const extractKeywords = (req: Request, res: Response, next: NextFunction)
             (term: Term) =>
                 term.tags.includes("Noun") &&
                 !term.tags.includes("Pronoun") &&
-                !stopWords.has(term.normal),
+                !STOP_WORDS.has(term.normal),
         );
 
     const keywords = [...new Set(filteredData.map((term) => term.normal))];
@@ -71,4 +56,6 @@ export const extractKeywords = (req: Request, res: Response, next: NextFunction)
     next();
 };
 
-export const executePipeline = () => {};
+export const executePipeline = (req: Request) => {
+    return req.pipelineInput;
+};
