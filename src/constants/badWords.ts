@@ -1,0 +1,16 @@
+export const BAD_WORDS = new Set([
+    "their",
+    "they",
+    "them",
+    "our",
+    "your",
+    "near",
+    "under",
+    "over",
+    "with",
+    "without",
+    "because",
+    "for",
+    "to",
+    "of",
+]);

@@ -13,9 +13,10 @@
   "keywords": [],
   "type": "module",
   "dependencies": {
-    "compromise": "^14.16.0",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "wink-eng-lite-web-model": "^1.8.1",
+    "wink-nlp": "^2.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
