@@ -1,4 +1,4 @@
-import express, { type Express } from "express";
+import express, { Express } from "express";
 import extractRouter from "./routes/extract.routes.js";
 import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 
