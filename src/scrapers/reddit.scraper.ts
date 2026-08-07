@@ -1,5 +1,5 @@
 import { NextFunction } from "express";
-import { MAX_SEARCHES } from "../constants/pipeline.constants.js";
+import { getSearchLimit } from "../constants/pipeline.constants.js";
 import { Keyword } from "../types/keyword.js";
 import { ScrapedPost } from "../types/scrapedPost.js";
 import AppError from "../utils/AppError.js";
@@ -42,13 +42,10 @@ export const compilePosts = async (
     next: NextFunction,
     keywords: Keyword[],
 ) => {
-    const search_cap = MAX_SEARCHES(keywords);
-    const posts: ScrapedPost[] = [];
+    const search_cap = getSearchLimit(keywords);
 
-    for (let i: number = 0; i < search_cap; i++) {
-        const posts_set = await getPosts(keywords[i], next);
-        if (posts_set) posts.push(...posts_set);
-    }
+    const promises = keywords.slice(0, search_cap).map((keyword) => getPosts(keyword, next));
+    const results = await Promise.all(promises);
 
-    return posts;
+    return results;
 };
