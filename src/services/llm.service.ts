@@ -2,6 +2,7 @@ import Groq from "groq-sdk";
 import { ScrapedPost } from "../types/scrapedPost.js";
 import AppError from "../utils/AppError.js";
 
+console.log(process.env.GROQ_API_KEY);
 const groq = new Groq({
     apiKey: process.env.GROQ_API_KEY,
 });

@@ -35,7 +35,7 @@ export const getKeywords = (req: Request, res: Response, next: NextFunction) => 
     next();
 };
 
-export const executePipeline = async (topic: string, industry: string) => {
+export const executePipeline = async (topic: string, industry: string, keywords: Keyword[]) => {
     const redditPosts: ScrapedPost[] = await redditScraper(keywords);
 
     const report: JSON = await initializeLLM(topic, industry, redditPosts);

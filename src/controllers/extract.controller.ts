@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "../utils/AppError.js";
 import { executePipeline } from "../services/pipeline.service.js";
+import catchAsync from "../utils/catchAsync.js";
 
 interface CustomBody {
     topic: string;
@@ -40,21 +41,13 @@ export const validateRequest = (
     next();
 };
 
-export const extractContent = async (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-): Promise<void> => {
-    try {
-        const { topic, industry } = req.pipelineInput!;
-        const report = await executePipeline(topic, industry);
+export const extractContent = catchAsync(async (req: Request, res: Response): Promise<void> => {
+    const { topic, industry, keywords } = req.pipelineInput!;
+    const report: JSON = await executePipeline(topic, industry, keywords);
 
-        res.status(200).json({
-            topic,
-            industry,
-            report,
-        });
-    } catch (err) {
-        next(err);
-    }
-};
+    res.status(200).json({
+        topic,
+        industry,
+        report,
+    });
+});

@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import "dotenv/config";
 
 process.on("uncaughtException", (err: Error) => {
     console.log("UNCAUGHT EXCEPTION: Shutting down...");
@@ -6,8 +6,6 @@ process.on("uncaughtException", (err: Error) => {
     console.log(err.stack);
     process.exit(1);
 });
-
-dotenv.config({ path: "../.env" });
 
 import app from "./app.js";
 import { Server } from "node:http";
