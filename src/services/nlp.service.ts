@@ -3,6 +3,7 @@ import model from "wink-eng-lite-web-model";
 import { STOP_WORDS } from "../constants/stopWords.js";
 import { phrase_scorer, word_scorer } from "./word_scorer.service.js";
 import { GENERIC } from "../constants/genericWords.js";
+import { Keyword } from "../types/keyword.js";
 
 const nlp = winkNLP(model);
 
@@ -12,11 +13,6 @@ interface Token {
     word: string;
     lemma: string;
     pos: string;
-}
-
-interface Keyword {
-    content: string;
-    score: number;
 }
 
 export const extractKeywords = (topic: string): Keyword[] => {

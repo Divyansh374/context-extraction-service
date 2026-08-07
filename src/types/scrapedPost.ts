@@ -1,4 +1,5 @@
 export interface ScrapedPost {
+    id: string;
     platform: "reddit" | "x";
     subreddit?: string;
     title?: string;
@@ -6,9 +7,13 @@ export interface ScrapedPost {
     author: string;
     url: string;
     engagement: number;
-    comments: {
+    comments?: {
         author: string;
         comment: string;
     }[];
     createdAt: Date;
+}
+
+export interface RedditScraper {
+    search(query: string): Promise<ScrapedPost[]>;
 }
