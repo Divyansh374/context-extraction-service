@@ -47,5 +47,11 @@ export const compilePosts = async (
     const promises = keywords.slice(0, search_cap).map((keyword) => getPosts(keyword, next));
     const results = await Promise.all(promises);
 
-    return results;
+    const sortedResults = results
+        .flat()
+        .filter((post): post is ScrapedPost => !!post)
+        .sort((a, b) => b.engagement - a.engagement)
+        .slice(20);
+
+    return sortedResults;
 };
