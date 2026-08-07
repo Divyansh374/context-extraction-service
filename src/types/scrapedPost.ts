@@ -1,3 +1,9 @@
+export interface Comment {
+    author: string;
+    comment: string;
+    engagement: number;
+}
+
 export interface ScrapedPost {
     id: string;
     platform: "reddit" | "x";
@@ -7,10 +13,7 @@ export interface ScrapedPost {
     author: string;
     url: string;
     engagement: number;
-    comments?: {
-        author: string;
-        comment: string;
-    }[];
+    comments?: Comment[];
     createdAt: Date;
 }
 

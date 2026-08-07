@@ -1,10 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import { extractKeywords } from "./nlp.service.js";
+import { Keyword } from "../types/keyword.js";
+import { redditScraper } from "../scrapers/reddit.scraper.js";
+import AppError from "../utils/AppError.js";
+import { ScrapedPost } from "../types/scrapedPost.js";
 
 export interface PipelineInput {
     topic: string;
     industry: string;
-    keywords: string[];
+    keywords: Keyword[];
 }
 
 export const getKeywords = (req: Request, res: Response, next: NextFunction) => {
@@ -14,6 +18,10 @@ export const getKeywords = (req: Request, res: Response, next: NextFunction) => 
     industry = industry.replace(/\s+/g, " ").trim().toLowerCase();
 
     const keywords = extractKeywords(topic);
+
+    if (!keywords) {
+        return next(new AppError(400, "Internal error"));
+    }
 
     const pipelineInput: PipelineInput = {
         topic,
@@ -26,6 +34,7 @@ export const getKeywords = (req: Request, res: Response, next: NextFunction) => 
     next();
 };
 
-export const executePipeline = (req: Request) => {
-    return req.pipelineInput;
+export const executePipeline = async (keywords: Keyword[]) => {
+    const redditPosts: ScrapedPost[] = await redditScraper(keywords);
+    return redditPosts;
 };

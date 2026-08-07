@@ -20,6 +20,10 @@ export const validateRequest = (
 
     const { topic, industry } = req.body;
 
+    if (!topic || !industry) {
+        return next(new AppError(400, "Specify both topic and industry"));
+    }
+
     if (topic.length <= 15 || topic.length >= 300) {
         return next(
             new AppError(
@@ -36,6 +40,15 @@ export const validateRequest = (
     next();
 };
 
-export const extractContent = async (req: Request, res: Response): Promise<void> => {
-    res.status(200).json(executePipeline(req));
+export const extractContent = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+): Promise<void> => {
+    try {
+        const response = await executePipeline(req.pipelineInput!.keywords);
+        res.status(200).json(response);
+    } catch (err) {
+        next(err);
+    }
 };

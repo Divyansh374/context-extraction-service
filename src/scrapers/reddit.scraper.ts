@@ -1,8 +1,8 @@
-import { NextFunction } from "express";
 import { getSearchLimit, MINIMUM_UPVOTES } from "../constants/pipeline.constants.js";
 import { Keyword } from "../types/keyword.js";
-import { ScrapedPost } from "../types/scrapedPost.js";
+import { ScrapedPost, Comment } from "../types/scrapedPost.js";
 import AppError from "../utils/AppError.js";
+import { getComments } from "../services/redditComment.service.js";
 
 const getPosts = async (keyword: Keyword) => {
     let response, data;
@@ -14,7 +14,7 @@ const getPosts = async (keyword: Keyword) => {
         );
         data = await response.json();
     } catch {
-        throw new AppError(502, "The requested server is not working");
+        throw new AppError(502, "PullPush servers are not working");
     }
 
     const result = new Map<string, ScrapedPost>();
@@ -36,12 +36,7 @@ const getPosts = async (keyword: Keyword) => {
     return [...result.values()];
 };
 
-export const compilePosts = async (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-    keywords: Keyword[],
-) => {
+export const redditScraper = async (keywords: Keyword[]) => {
     const search_cap = getSearchLimit(keywords);
 
     const promises = keywords.slice(0, search_cap).map((keyword) => getPosts(keyword));
@@ -52,6 +47,12 @@ export const compilePosts = async (
         .sort((a, b) => b.engagement - a.engagement)
         .slice(20)
         .filter((post) => post.engagement >= MINIMUM_UPVOTES);
+
+    await Promise.all(
+        sortedResults.map(async (post) => {
+            post.comments = await getComments(post.id);
+        }),
+    );
 
     return sortedResults;
 };
