@@ -26,7 +26,8 @@ export const getComments = async (postId: string): Promise<Comment[]> => {
 
     const sortedComments = comments
         .filter((comment) => comment.engagement >= MINIMUM_UPVOTES)
-        .sort((a, b) => b.engagement - a.engagement);
+        .sort((a, b) => b.engagement - a.engagement)
+        .slice(3);
 
     return sortedComments;
 };

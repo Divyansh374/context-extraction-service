@@ -4,6 +4,7 @@ import { Keyword } from "../types/keyword.js";
 import { redditScraper } from "../scrapers/reddit.scraper.js";
 import AppError from "../utils/AppError.js";
 import { ScrapedPost } from "../types/scrapedPost.js";
+import { initializeLLM } from "./llm.service.js";
 
 export interface PipelineInput {
     topic: string;
@@ -34,7 +35,10 @@ export const getKeywords = (req: Request, res: Response, next: NextFunction) => 
     next();
 };
 
-export const executePipeline = async (keywords: Keyword[]) => {
+export const executePipeline = async (topic: string, industry: string) => {
     const redditPosts: ScrapedPost[] = await redditScraper(keywords);
-    return redditPosts;
+
+    const report: JSON = await initializeLLM(topic, industry, redditPosts);
+
+    return report;
 };

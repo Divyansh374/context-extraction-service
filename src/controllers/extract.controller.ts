@@ -46,8 +46,14 @@ export const extractContent = async (
     next: NextFunction,
 ): Promise<void> => {
     try {
-        const response = await executePipeline(req.pipelineInput!.keywords);
-        res.status(200).json(response);
+        const { topic, industry } = req.pipelineInput!;
+        const report = await executePipeline(topic, industry);
+
+        res.status(200).json({
+            topic,
+            industry,
+            report,
+        });
     } catch (err) {
         next(err);
     }

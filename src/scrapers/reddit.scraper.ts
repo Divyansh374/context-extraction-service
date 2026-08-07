@@ -1,6 +1,6 @@
 import { getSearchLimit, MINIMUM_UPVOTES } from "../constants/pipeline.constants.js";
 import { Keyword } from "../types/keyword.js";
-import { ScrapedPost, Comment } from "../types/scrapedPost.js";
+import { ScrapedPost } from "../types/scrapedPost.js";
 import AppError from "../utils/AppError.js";
 import { getComments } from "../services/redditComment.service.js";
 
