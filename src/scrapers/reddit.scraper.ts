@@ -1,10 +1,10 @@
 import { NextFunction } from "express";
-import { getSearchLimit } from "../constants/pipeline.constants.js";
+import { getSearchLimit, MINIMUM_UPVOTES } from "../constants/pipeline.constants.js";
 import { Keyword } from "../types/keyword.js";
 import { ScrapedPost } from "../types/scrapedPost.js";
 import AppError from "../utils/AppError.js";
 
-const getPosts = async (keyword: Keyword, next: NextFunction) => {
+const getPosts = async (keyword: Keyword) => {
     let response, data;
 
     try {
@@ -14,7 +14,7 @@ const getPosts = async (keyword: Keyword, next: NextFunction) => {
         );
         data = await response.json();
     } catch {
-        return next(new AppError(502, "The requested server is not working"));
+        throw new AppError(502, "The requested server is not working");
     }
 
     const result = new Map<string, ScrapedPost>();
@@ -44,14 +44,14 @@ export const compilePosts = async (
 ) => {
     const search_cap = getSearchLimit(keywords);
 
-    const promises = keywords.slice(0, search_cap).map((keyword) => getPosts(keyword, next));
+    const promises = keywords.slice(0, search_cap).map((keyword) => getPosts(keyword));
     const results = await Promise.all(promises);
 
     const sortedResults = results
         .flat()
-        .filter((post): post is ScrapedPost => !!post)
         .sort((a, b) => b.engagement - a.engagement)
-        .slice(20);
+        .slice(20)
+        .filter((post) => post.engagement >= MINIMUM_UPVOTES);
 
     return sortedResults;
 };
