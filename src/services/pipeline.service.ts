@@ -38,15 +38,17 @@ export const getKeywords = (req: Request, res: Response, next: NextFunction) => 
 };
 
 export const executePipeline = async (topic: string, industry: string, keywords: Keyword[]) => {
-    const [redditPosts, linkedInPosts, instagramPosts]: ContentItem[][] = await Promise.all([
+    const results = await Promise.allSettled([
         redditScraper(keywords),
         linkedInScraper(keywords),
         instagramScraper(keywords),
     ]);
 
-    const results = [...redditPosts, ...linkedInPosts, ...instagramPosts];
+    const content: ContentItem[] = results.flatMap((result) =>
+        result.status === "fulfilled" ? result.value : [],
+    );
 
-    const report: JSON = await initializeLLM(topic, industry, results);
+    const report: JSON = await initializeLLM(topic, industry, content);
 
     return report;
 };
