@@ -44,9 +44,17 @@ export const executePipeline = async (topic: string, industry: string, keywords:
         instagramScraper(keywords),
     ]);
 
-    const content: ContentItem[] = results.flatMap((result) =>
+    if (!results) {
+        throw new AppError(500, "Something went wrong");
+    }
+
+    const content: ContentItem[] = results.flatMap((result): ContentItem[] =>
         result.status === "fulfilled" ? result.value : [],
     );
+
+    if (!content || content.length === 0) {
+        throw new AppError(500, "Something went wrong");
+    }
 
     const report: JSON = await initializeLLM(topic, industry, content);
 

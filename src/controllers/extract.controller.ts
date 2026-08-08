@@ -25,6 +25,10 @@ export const validateRequest = (
         return next(new AppError(400, "Specify both topic and industry"));
     }
 
+    if (typeof topic !== "string" || typeof industry !== "string") {
+        return next(new AppError(400, "Topic and industry fields should have strings as input"));
+    }
+
     if (topic.length < 15 || topic.length > 300) {
         return next(
             new AppError(

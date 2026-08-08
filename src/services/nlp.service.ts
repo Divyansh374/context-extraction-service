@@ -99,10 +99,5 @@ export const extractKeywords = (topic: string): Keyword[] => {
         }
     }
 
-    keywords
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 12)
-        .map((k) => k.content);
-
-    return keywords;
+    return keywords.sort((a, b) => b.score - a.score).slice(0, 3);
 };

@@ -14,6 +14,10 @@ export const getComments = async (postId: string): Promise<Comment[]> => {
         throw new AppError(502, "PullPush servers are not working");
     }
 
+    if (!response.ok) {
+        throw new AppError(response.status, "PullPush request failed");
+    }
+
     const comments: Comment[] = [];
 
     data.data.forEach((item) => {

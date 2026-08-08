@@ -24,8 +24,6 @@ export const initializeLLM = async (topic: string, industry: string, content: Co
             },
         ],
 
-        temperature: 0.2,
-
         response_format: {
             type: "json_object",
         },

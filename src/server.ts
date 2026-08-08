@@ -1,5 +1,11 @@
 import "dotenv/config";
 
+const validEnvs = ["development", "production"];
+
+if (process.env.NODE_ENV && !validEnvs.includes(process.env.NODE_ENV)) {
+    console.log(`Invalid NODE_ENV=${process.env.NODE_ENV}. App is shutting down`);
+}
+
 process.on("uncaughtException", (err: Error) => {
     console.log("UNCAUGHT EXCEPTION: Shutting down...");
     console.log(`${err.name}: ${err.message}`);
