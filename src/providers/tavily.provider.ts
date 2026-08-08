@@ -1,9 +1,16 @@
 import { tavily } from "@tavily/core";
 import { SearchProvider } from "../types/provider.js";
 import { SearchResult } from "../types/searchResult.js";
+import AppError from "../utils/AppError.js";
+
+const apiKey = process.env.TAVILY_API_KEY;
+
+if (!apiKey) {
+    throw new AppError(500, "TAVILY_API_KEY is not configured");
+}
 
 const tavilyClient = tavily({
-    apiKey: process.env.TAVILY_API_KEY,
+    apiKey,
 });
 
 class TavilyProvider implements SearchProvider {

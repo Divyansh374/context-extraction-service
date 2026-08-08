@@ -1,4 +1,4 @@
-import { getProviders } from "../providers/index.js";
+import { getProviders } from "../providers/providers.js";
 
 export const search = async (query: string) => {
     const providers = getProviders();
