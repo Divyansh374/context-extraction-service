@@ -49,7 +49,7 @@ export const redditScraper = async (keywords: Keyword[]) => {
                 post.engagement !== undefined && post.engagement >= MINIMUM_UPVOTES,
         )
         .sort((a, b) => b.engagement! - a.engagement!)
-        .slice(20);
+        .slice(0, 20);
 
     await Promise.all(
         sortedResults.map(async (post) => {

@@ -1,5 +1,5 @@
 import { MINIMUM_UPVOTES } from "../constants/pipeline.constants.js";
-import { Comment } from "../types/scrapedPost.js";
+import { Comment } from "../types/contentItem.js";
 import AppError from "../utils/AppError.js";
 
 export const getComments = async (postId: string): Promise<Comment[]> => {
@@ -27,7 +27,7 @@ export const getComments = async (postId: string): Promise<Comment[]> => {
     const sortedComments = comments
         .filter((comment) => comment.engagement >= MINIMUM_UPVOTES)
         .sort((a, b) => b.engagement - a.engagement)
-        .slice(3);
+        .slice(0, 3);
 
     return sortedComments;
 };

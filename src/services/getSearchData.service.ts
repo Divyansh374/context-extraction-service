@@ -4,7 +4,7 @@ import { SearchResult } from "../types/searchResult.js";
 
 export const getSearchData = async (keywords: Keyword[], site: string) => {
     const query = `site:${site} (${keywords
-        .slice(3)
+        .slice(0, 3)
         .map((keyword) => `"${keyword.content}"`)
         .join(" OR ")})`;
 

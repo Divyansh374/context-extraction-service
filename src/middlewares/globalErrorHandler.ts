@@ -8,7 +8,7 @@ const sendErrorDev = (err: AppError, res: Response) => {
         message: err.message,
         stack: err.stack,
     });
-}
+};
 
 export default (err: AppError, req: Request, res: Response) => {
     err.statusCode = err.statusCode || 500;
@@ -17,4 +17,4 @@ export default (err: AppError, req: Request, res: Response) => {
     if (process.env.NODE_ENV === "development") {
         sendErrorDev(err, res);
     }
-}
+};

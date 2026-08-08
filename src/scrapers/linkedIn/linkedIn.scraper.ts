@@ -13,6 +13,7 @@ export const linkedInScraper = async (keywords: Keyword[]) => {
             id: item.id,
             platform: "linkedIn",
             title: item.title,
+            author: item.author,
             url: item.url,
             content: item.snippet,
         });

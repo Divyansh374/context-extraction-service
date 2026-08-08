@@ -25,7 +25,7 @@ export const validateRequest = (
         return next(new AppError(400, "Specify both topic and industry"));
     }
 
-    if (topic.length <= 15 || topic.length >= 300) {
+    if (topic.length < 15 || topic.length > 300) {
         return next(
             new AppError(
                 401,
