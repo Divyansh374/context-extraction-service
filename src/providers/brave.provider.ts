@@ -27,7 +27,11 @@ class BraveProvider implements SearchProvider {
                 },
             );
         } catch {
-            throw new AppError(500, "Brave servers are not working");
+            throw new AppError(500, "Brave request failed");
+        }
+
+        if (!response.ok) {
+            throw new AppError(response.status, "Brave API request failed");
         }
 
         const data = await response.json();
