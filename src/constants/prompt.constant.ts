@@ -82,5 +82,27 @@ Generate the report using exactly these sections:
 - Risks
 - Final Verdict
 
-Return your answer as JSON matching the requested schema.
+Return your answer as JSON matching the requested schema like this:
+
+{
+    "marketValidation": "...",
+    "painPoints": [
+      "...",
+      "..."
+    ],
+    "existingSolutions": [
+      "...",
+      "..."
+    ],
+    "featureSuggestions": [
+      "...",
+      "..."
+    ],
+    "communitySentiment": "...",
+    "risks": [
+      "...",
+      "..."
+    ],
+    "finalVerdict": "..."
+}
 `;
