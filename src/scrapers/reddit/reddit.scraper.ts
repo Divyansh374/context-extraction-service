@@ -1,8 +1,8 @@
 import { getSearchLimit, MINIMUM_UPVOTES } from "../../constants/pipeline.constants.js";
 import { Keyword } from "../../types/keyword.js";
-import { ScrapedPost } from "../../types/scrapedPost.js";
 import AppError from "../../utils/AppError.js";
 import { getComments } from "../../services/redditComment.service.js";
+import { ContentItem } from "../../types/contentItem.js";
 
 const getPosts = async (keyword: Keyword) => {
     let response, data;
@@ -17,7 +17,7 @@ const getPosts = async (keyword: Keyword) => {
         throw new AppError(502, "PullPush servers are not working");
     }
 
-    const result = new Map<string, ScrapedPost>();
+    const result = new Map<string, ContentItem>();
 
     data.data.forEach((item) => {
         result.set(item.id, {
@@ -44,9 +44,12 @@ export const redditScraper = async (keywords: Keyword[]) => {
 
     const sortedResults = results
         .flat()
-        .sort((a, b) => b.engagement - a.engagement)
-        .slice(20)
-        .filter((post) => post.engagement >= MINIMUM_UPVOTES);
+        .filter(
+            (post): post is ContentItem =>
+                post.engagement !== undefined && post.engagement >= MINIMUM_UPVOTES,
+        )
+        .sort((a, b) => b.engagement! - a.engagement!)
+        .slice(20);
 
     await Promise.all(
         sortedResults.map(async (post) => {

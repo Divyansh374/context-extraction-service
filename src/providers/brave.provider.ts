@@ -39,6 +39,7 @@ class BraveProvider implements SearchProvider {
         const searchResults: SearchResult[] = [];
         data.web.results.forEach((item) => {
             searchResults.push({
+                id: item.id,
                 title: item.title,
                 url: item.url,
                 snippet: item.description,

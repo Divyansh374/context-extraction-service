@@ -36,6 +36,7 @@ class SerperProvider implements SearchProvider {
         const searchResults: SearchResult[] = [];
         data.organic.forEach((item) => {
             searchResults.push({
+                id: item.id,
                 title: item.title,
                 url: item.link,
                 snippet: item.snippet,

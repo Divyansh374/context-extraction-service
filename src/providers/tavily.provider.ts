@@ -21,6 +21,7 @@ class TavilyProvider implements SearchProvider {
 
         response.results.forEach((item) => {
             searchResult.push({
+                id: item.id,
                 title: item.title,
                 url: item.url,
                 snippet: item.content,
