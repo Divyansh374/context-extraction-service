@@ -1,10 +1,10 @@
 import { Keyword } from "../../types/keyword.js";
 
 export const getSearchData = (keywords: Keyword[]) => {
-    const painPoints = keywords.map((item) => `"${item.content}"`);
-    const painPointStr = painPoints.join(" ");
-
-    const query = `site:linkedin.com ${painPointStr}`;
+    const query = `site:linkedin.com ${keywords
+        .slice(3)
+        .map((keyword) => `"${keyword.content}"`)
+        .join(" ")}`;
 
     return query;
 };
