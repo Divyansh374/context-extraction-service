@@ -1,8 +1,8 @@
-import { getSearchLimit, MINIMUM_UPVOTES } from "../constants/pipeline.constants.js";
-import { Keyword } from "../types/keyword.js";
-import { ScrapedPost } from "../types/scrapedPost.js";
-import AppError from "../utils/AppError.js";
-import { getComments } from "../services/redditComment.service.js";
+import { getSearchLimit, MINIMUM_UPVOTES } from "../../constants/pipeline.constants.js";
+import { Keyword } from "../../types/keyword.js";
+import { ScrapedPost } from "../../types/scrapedPost.js";
+import AppError from "../../utils/AppError.js";
+import { getComments } from "../../services/redditComment.service.js";
 
 const getPosts = async (keyword: Keyword) => {
     let response, data;

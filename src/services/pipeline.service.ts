@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { extractKeywords } from "./nlp.service.js";
 import { Keyword } from "../types/keyword.js";
-import { redditScraper } from "../scrapers/reddit.scraper.js";
+import { redditScraper } from "../scrapers/reddit/reddit.scraper.js";
 import AppError from "../utils/AppError.js";
 import { ScrapedPost } from "../types/scrapedPost.js";
 import { initializeLLM } from "./llm.service.js";
