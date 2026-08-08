@@ -1,12 +1,12 @@
+import { ContentItem } from "../types/contentItem.js";
 import Groq from "groq-sdk";
-import { ScrapedPost } from "../types/scrapedPost.js";
 import AppError from "../utils/AppError.js";
 
 const groq = new Groq({
     apiKey: process.env.GROQ_API_KEY,
 });
 
-export const initializeLLM = async (topic: string, industry: string, posts: ScrapedPost[]) => {
+export const initializeLLM = async (topic: string, industry: string, content: ContentItem[]) => {
     const prompt = `
     You are an expert startup market researcher
 
@@ -94,30 +94,30 @@ export const initializeLLM = async (topic: string, industry: string, posts: Scra
 
     Reddit Discussions:
 
-    ${posts
+    ${content
         .map(
-            (post) => `
+            (item) => `
     ID:
-    ${post.id}
+    ${item.id}
 
     Title:
-    ${post.title}
+    ${item.title}
 
     Engagement:
-    ${post.engagement}
+    ${item.engagement}
     
     Content:
-    ${post.content}
+    ${item.content}
 
     Top Comments:
 
-    ${post.comments?.map((comment) => `- ${comment.comment}`).join("\n")}      
+    ${item.comments?.map((comment) => `- ${comment.comment}`).join("\n")}      
     `,
         )
         .join("\n----------------------\n")}
     `;
 
-    const completion = groq.chat.completions.create({
+    const completion = await groq.chat.completions.create({
         model: "llama-3.3-70b-versatile",
 
         messages: [
@@ -139,10 +139,10 @@ export const initializeLLM = async (topic: string, industry: string, posts: Scra
         },
     });
 
-    const content = (await completion).choices[0].message.content!;
+    const resultContent = completion.choices[0].message.content!;
 
     try {
-        return JSON.parse(content);
+        return JSON.parse(resultContent);
     } catch {
         throw new AppError(500, "Invalid JSON returned by LLM");
     }
