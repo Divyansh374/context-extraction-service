@@ -5,6 +5,8 @@ import { redditScraper } from "../scrapers/reddit/reddit.scraper.js";
 import { initializeLLM } from "./llm.service.js";
 import { ContentItem } from "../types/contentItem.js";
 import AppError from "../utils/AppError.js";
+import { linkedInScraper } from "../scrapers/linkedIn/linkedIn.scraper.js";
+import { instagramScraper } from "../scrapers/instagram/instagram.scraper.js";
 
 export interface PipelineInput {
     topic: string;
@@ -36,9 +38,15 @@ export const getKeywords = (req: Request, res: Response, next: NextFunction) => 
 };
 
 export const executePipeline = async (topic: string, industry: string, keywords: Keyword[]) => {
-    const redditPosts: ContentItem[] = await redditScraper(keywords);
+    const [redditPosts, linkedInPosts, instagramPosts]: ContentItem[][] = await Promise.all([
+        redditScraper(keywords),
+        linkedInScraper(keywords),
+        instagramScraper(keywords),
+    ]);
 
-    const report: JSON = await initializeLLM(topic, industry, redditPosts);
+    const results = [...redditPosts, ...linkedInPosts, ...instagramPosts];
+
+    const report: JSON = await initializeLLM(topic, industry, results);
 
     return report;
 };
