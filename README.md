@@ -47,6 +47,7 @@ context signals using an LLM.
 
 ### 2. Project Structure
 
+```
 src/
 |---constants/
 |     |-genericWords.ts
@@ -101,6 +102,7 @@ src/
 |
 |---app.ts
 |---server.ts
+```
 
 ### 3. Tech Stack
 
