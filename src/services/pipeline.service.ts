@@ -69,10 +69,7 @@ export const executePipeline = async (topic: string, industry: string, keywords:
     });
 
     if (!content || content.length === 0) {
-        throw new AppError(
-            404,
-            "No relevant content found from Reddit, LinkedIn, or Instagram for the given topic and industry",
-        );
+        throw new Error();
     }
 
     const report: JSON = await initializeLLM(topic, industry, content);

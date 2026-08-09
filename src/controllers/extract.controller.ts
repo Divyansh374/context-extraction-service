@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, response } from "express";
 import AppError from "../utils/AppError.js";
 import { executePipeline } from "../services/pipeline.service.js";
 import catchAsync from "../utils/catchAsync.js";
@@ -45,14 +45,32 @@ export const validateRequest = (
     next();
 };
 
-export const extractContent = catchAsync(async (req: Request, res: Response): Promise<void> => {
-    const { topic, industry, keywords } = req.pipelineInput!;
-    const response = await executePipeline(topic, industry, keywords);
+export const extractContent = catchAsync(
+    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        const { topic, industry, keywords } = req.pipelineInput!;
+        let response;
+        try {
+            response = await executePipeline(topic, industry, keywords);
+        } catch {
+            res.status(200).json({
+                topic,
+                industry,
+                report: {
+                    signals: [],
+                    message: "No relevant content found from any source",
+                },
+            });
+        }
 
-    res.status(200).json({
-        topic,
-        industry,
-        sources: response.sources,
-        report: response.report,
-    });
-});
+        if (!response) {
+            return next(new AppError(500, "Internal sever error"));
+        }
+
+        res.status(200).json({
+            topic,
+            industry,
+            sources: response.sources,
+            report: response.report,
+        });
+    },
+);
