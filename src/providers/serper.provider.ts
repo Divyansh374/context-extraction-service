@@ -1,6 +1,8 @@
 import { createHash } from "node:crypto";
 import { SearchProvider } from "../types/provider.js";
 import { SearchResult } from "../types/searchResult.js";
+import { fetchWithTimeout } from "../utils/fetchWithTimeout.js";
+import { PROVIDER_TIMEOUT_MS } from "../constants/pipeline.constants.js";
 import AppError from "../utils/AppError.js";
 
 const apiKey = process.env.SERPER_API_KEY;
@@ -14,16 +16,20 @@ class SerperProvider implements SearchProvider {
         let response;
 
         try {
-            response = await fetch("https://google.serper.dev/search", {
-                method: "POST",
-                headers: {
-                    "X-API-KEY": apiKey!,
-                    "Content-Type": "application/json",
+            response = await fetchWithTimeout(
+                "https://google.serper.dev/search",
+                {
+                    method: "POST",
+                    headers: {
+                        "X-API-KEY": apiKey!,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        q: query,
+                    }),
                 },
-                body: JSON.stringify({
-                    q: query,
-                }),
-            });
+                PROVIDER_TIMEOUT_MS,
+            );
         } catch {
             throw new AppError(500, "Serper request failed");
         }

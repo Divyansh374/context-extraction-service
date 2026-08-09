@@ -1,6 +1,8 @@
 import { createHash } from "node:crypto";
 import { SearchProvider } from "../types/provider.js";
 import { SearchResult } from "../types/searchResult.js";
+import { fetchWithTimeout } from "../utils/fetchWithTimeout.js";
+import { PROVIDER_TIMEOUT_MS } from "../constants/pipeline.constants.js";
 import AppError from "../utils/AppError.js";
 
 const apiKey = process.env.BRAVE_API_KEY;
@@ -13,7 +15,7 @@ class BraveProvider implements SearchProvider {
     async search(query: string): Promise<SearchResult[]> {
         let response;
         try {
-            response = await fetch(
+            response = await fetchWithTimeout(
                 `https://api.search.brave.com/res/v1/web/search?${new URLSearchParams({
                     q: query,
                     count: "10",
@@ -26,6 +28,7 @@ class BraveProvider implements SearchProvider {
                         Accept: "application/json",
                     },
                 },
+                PROVIDER_TIMEOUT_MS,
             );
         } catch {
             throw new AppError(500, "Brave request failed");

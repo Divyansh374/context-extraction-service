@@ -1,8 +1,9 @@
 import { tavily } from "@tavily/core";
 import { SearchProvider } from "../types/provider.js";
 import { SearchResult } from "../types/searchResult.js";
-import AppError from "../utils/AppError.js";
 import { createHash } from "node:crypto";
+import { PROVIDER_TIMEOUT_MS } from "../constants/pipeline.constants.js";
+import AppError from "../utils/AppError.js";
 
 const apiKey = process.env.TAVILY_API_KEY;
 
@@ -16,7 +17,9 @@ const tavilyClient = tavily({
 
 class TavilyProvider implements SearchProvider {
     async search(query: string): Promise<SearchResult[]> {
-        const response = await tavilyClient.search(query);
+        const response = await tavilyClient.search(query, {
+            timeout: PROVIDER_TIMEOUT_MS / 1000,
+        });
 
         const searchResult: SearchResult[] = [];
 
