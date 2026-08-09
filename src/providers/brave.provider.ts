@@ -11,6 +11,13 @@ if (!apiKey) {
     throw new AppError(500, "BRAVE_API_KEY is not configured");
 }
 
+interface BraveResult {
+    id?: string;
+    title: string;
+    url: string;
+    description: string;
+}
+
 class BraveProvider implements SearchProvider {
     async search(query: string): Promise<SearchResult[]> {
         let response;
@@ -41,12 +48,12 @@ class BraveProvider implements SearchProvider {
         const data = await response.json();
 
         const searchResults: SearchResult[] = [];
-        data.web.results.forEach((item) => {
+        data.web?.results?.forEach((item: BraveResult) => {
             searchResults.push({
-                id: item.id ?? createHash(item.url),
+                id: item.id ?? createHash("sha256").update(item.url).digest("hex"),
                 title: item.title,
                 url: item.url,
-                snippet: item.description,
+                snippet: item.description ?? "",
             });
         });
 

@@ -11,6 +11,13 @@ if (!apiKey) {
     throw new AppError(500, "BRAVE_API_KEY is not configured");
 }
 
+interface SerperResult {
+    id?: string;
+    title: string;
+    url: string;
+    snippet?: string;
+}
+
 class SerperProvider implements SearchProvider {
     async search(query: string): Promise<SearchResult[]> {
         let response;
@@ -41,12 +48,12 @@ class SerperProvider implements SearchProvider {
         const data = await response.json();
 
         const searchResults: SearchResult[] = [];
-        data.organic.forEach((item) => {
+        data.organic?.forEach((item: SerperResult) => {
             searchResults.push({
-                id: item.id ?? createHash(item.url),
+                id: item.id ?? createHash("sha256").update(item.url).digest("hex"),
                 title: item.title,
-                url: item.link,
-                snippet: item.snippet,
+                url: item.url,
+                snippet: item.snippet ?? "",
             });
         });
 

@@ -8,6 +8,17 @@ import { Keyword } from "../../types/keyword.js";
 import { getComments } from "../../services/redditComment.service.js";
 import { ContentItem } from "../../types/contentItem.js";
 
+interface RedditResult {
+    id: string;
+    subreddit: string;
+    title: string;
+    selftext: string;
+    author: string;
+    permalink: string;
+    score: number;
+    created_utc: Date;
+}
+
 const getPosts = async (keyword: Keyword) => {
     const query = keyword.content.split(" ");
     const response = await fetch(
@@ -17,7 +28,7 @@ const getPosts = async (keyword: Keyword) => {
 
     const result = new Map<string, ContentItem>();
 
-    data.data.forEach((item) => {
+    data.data.forEach((item: RedditResult) => {
         result.set(item.id, {
             id: item.id,
             platform: "reddit",

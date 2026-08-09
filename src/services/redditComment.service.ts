@@ -6,6 +6,12 @@ import {
 import { Comment } from "../types/contentItem.js";
 import AppError from "../utils/appError.js";
 
+interface PullPushComment {
+    author: string;
+    comment: string;
+    score: number;
+}
+
 export const getComments = async (postId: string): Promise<Comment[]> => {
     let response, data;
 
@@ -24,7 +30,7 @@ export const getComments = async (postId: string): Promise<Comment[]> => {
 
     const comments: Comment[] = [];
 
-    data.data.forEach((item) => {
+    data.data?.forEach((item: PullPushComment) => {
         comments.push({
             author: item.author,
             comment: item.comment,

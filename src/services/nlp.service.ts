@@ -1,4 +1,4 @@
-import winkNLP from "wink-nlp";
+import winkNLP, { ModelAddons } from "wink-nlp";
 import model from "wink-eng-lite-web-model";
 import { STOP_WORDS } from "../constants/stopWords.js";
 import { phrase_scorer, word_scorer } from "./word_scorer.service.js";
@@ -15,12 +15,18 @@ interface Token {
     pos: string;
 }
 
+type Lemma = (index: number, rdd: unknown, addons: ModelAddons) => string;
+
+interface TokenItem {
+    out: (lemma?: Lemma, pos?: string) => string;
+}
+
 export const extractKeywords = (topic: string): Keyword[] => {
     const doc = nlp.readDoc(topic);
 
     const tokens: Token[] = [];
 
-    doc.tokens().each((token) => {
+    doc.tokens().each((token: TokenItem) => {
         tokens.push({
             word: token.out(),
             lemma: token.out(its.lemma),
