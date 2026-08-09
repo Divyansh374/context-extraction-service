@@ -455,3 +455,30 @@ If this were being taken to production, my next priorities would be:
 3. add provider health checks and circuit breaking.
 4. add structured observability and usage tracking.
 5. introduce a sustainable/self-hosted search backend with suitable infrastructure where appropriate.
+
+## Potential LLM Provider Fallback Pipeline
+
+The current implementation uses Groq as the LLM provider. During development, I considered applying the same provider-fallback architecture used for web search to the LLM layer.
+
+A possible implementation would be:
+
+Groq → Gemini 2.5 Flash-Lite → Gemini 2.5 Flash → OpenRouter
+
+The router would fall back to the next provider when a provider is temporarily unavailable or its rate limit is exhausted, while propagating non-retryable errors instead of blindly switching providers.
+
+At the time of development, the relevant free-tier limits I observed were approximately:
+
+| Provider | Rate Limit | Daily Limit |
+|----------|------------|-------------|
+| Groq | 30 RPM | No daily cap |
+| Gemini 2.5 Flash-Lite (AI Studio) | 15 RPM | 1,000 RPD |
+| Gemini 2.5 Flash (AI Studio) | 10 RPM | 250 RPD |
+| OpenRouter Free Variants | 20 RPM | 50 RPD |
+
+This would make the LLM layer more resilient to temporary provider rate limits and reduce dependence on a single provider.
+
+I did not implement this in the submitted version because the assignment did not require multi-provider LLM orchestration, and adding another abstraction immediately before submission would increase implementation complexity without being necessary for the required functionality.
+
+The architecture already uses provider abstractions for search, so this could be added without changing the pipeline itself:
+
+Pipeline → LLM Service → LLM Provider Router → Provider implementations

@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { SearchProvider } from "../types/provider.js";
 import { SearchResult } from "../types/searchResult.js";
 import AppError from "../utils/AppError.js";
@@ -36,7 +37,7 @@ class SerperProvider implements SearchProvider {
         const searchResults: SearchResult[] = [];
         data.organic.forEach((item) => {
             searchResults.push({
-                id: item.id,
+                id: item.id ?? createHash(item.url),
                 title: item.title,
                 url: item.link,
                 snippet: item.snippet,

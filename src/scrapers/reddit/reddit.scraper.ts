@@ -27,7 +27,7 @@ const getPosts = async (keyword: Keyword) => {
             author: item.author,
             url: `https://reddit.com/${item.permalink}`,
             engagement: item.score,
-            createdAt: new Date(),
+            createdAt: item.created_utc,
         });
     });
 
@@ -60,7 +60,7 @@ export const redditScraper = async (keywords: Keyword[]) => {
     );
 
     for (const result of sortedResults) {
-        result.content.slice(0, MAX_CONTENT_LENGTH);
+        result.content = result.content.slice(0, MAX_CONTENT_LENGTH);
     }
 
     return sortedResults;

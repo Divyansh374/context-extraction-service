@@ -2,6 +2,7 @@ import { tavily } from "@tavily/core";
 import { SearchProvider } from "../types/provider.js";
 import { SearchResult } from "../types/searchResult.js";
 import AppError from "../utils/AppError.js";
+import { createHash } from "node:crypto";
 
 const apiKey = process.env.TAVILY_API_KEY;
 
@@ -21,7 +22,7 @@ class TavilyProvider implements SearchProvider {
 
         response.results.forEach((item) => {
             searchResult.push({
-                id: item.id,
+                id: item.id ?? createHash(item.url),
                 title: item.title,
                 url: item.url,
                 snippet: item.content,

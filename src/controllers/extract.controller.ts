@@ -16,7 +16,7 @@ export const validateRequest = (
     next: NextFunction,
 ) => {
     if (!req.body) {
-        return next(new AppError(401, "Enter a valid request"));
+        return next(new AppError(400, "Enter a valid request"));
     }
 
     const { topic, industry } = req.body;
@@ -39,7 +39,7 @@ export const validateRequest = (
     }
 
     if (industry.length > 100) {
-        return next(new AppError(401, "Industry should be at most 100 characters long"));
+        return next(new AppError(400, "Industry should be at most 100 characters long"));
     }
 
     next();
@@ -47,11 +47,12 @@ export const validateRequest = (
 
 export const extractContent = catchAsync(async (req: Request, res: Response): Promise<void> => {
     const { topic, industry, keywords } = req.pipelineInput!;
-    const report: JSON = await executePipeline(topic, industry, keywords);
+    const response = await executePipeline(topic, industry, keywords);
 
     res.status(200).json({
         topic,
         industry,
-        report,
+        sources: response.sources,
+        report: response.report,
     });
 });

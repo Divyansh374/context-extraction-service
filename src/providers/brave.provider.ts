@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { SearchProvider } from "../types/provider.js";
 import { SearchResult } from "../types/searchResult.js";
 import AppError from "../utils/AppError.js";
@@ -39,7 +40,7 @@ class BraveProvider implements SearchProvider {
         const searchResults: SearchResult[] = [];
         data.web.results.forEach((item) => {
             searchResults.push({
-                id: item.id,
+                id: item.id ?? createHash(item.url),
                 title: item.title,
                 url: item.url,
                 snippet: item.description,
