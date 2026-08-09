@@ -1,4 +1,9 @@
-import { getSearchLimit, MINIMUM_UPVOTES } from "../../constants/pipeline.constants.js";
+import {
+    getSearchLimit,
+    MAX_CONTENT_LENGTH,
+    MAX_POSTS,
+    MINIMUM_UPVOTES,
+} from "../../constants/pipeline.constants.js";
 import { Keyword } from "../../types/keyword.js";
 import { getComments } from "../../services/redditComment.service.js";
 import { ContentItem } from "../../types/contentItem.js";
@@ -42,7 +47,7 @@ export const redditScraper = async (keywords: Keyword[]) => {
                 post.engagement !== undefined && post.engagement >= MINIMUM_UPVOTES,
         )
         .sort((a, b) => b.engagement! - a.engagement!)
-        .slice(0, 20);
+        .slice(0, MAX_POSTS);
 
     await Promise.allSettled(
         sortedResults.map(async (post) => {
@@ -53,6 +58,10 @@ export const redditScraper = async (keywords: Keyword[]) => {
             }
         }),
     );
+
+    for (const result of sortedResults) {
+        result.content.slice(0, MAX_CONTENT_LENGTH);
+    }
 
     return sortedResults;
 };

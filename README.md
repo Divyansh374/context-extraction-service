@@ -50,55 +50,55 @@ context signals using an LLM.
 ```
 src/
 |---constants/
-|     |-genericWords.ts
-|     |-pipeline.constants.ts
-|     |-prompt.constant.ts
-|     |-stopWords.ts
+|     ├-genericWords.ts
+|     ├-pipeline.constants.ts
+|     ├-prompt.constant.ts
+|     └-stopWords.ts
 |
 |---controllers/
-|     |-extract.controller.ts
+|     └-extract.controller.ts
 |
 |---middlewares/
-|     |-globalErrorHandler.ts
+|     └-globalErrorHandler.ts
 |
 |---providers/
-|     |-tavily.provider.ts
-|     |-brave.provider.ts
-|     |-serper.provider.ts
-|     |-providers.ts
+|     ├-tavily.provider.ts
+|     ├-brave.provider.ts
+|     ├-serper.provider.ts
+|     └-providers.ts
 |
 |---routes/
-|     |-extract.routes.ts
+|     └-extract.routes.ts
 |
 |---scrapers/
-|     |-reddit/
-|     |   |-reddit.scraper.ts
-|     |-linkedIn/
-|     |   |-linkedIn.scraper.ts
-|     |-instagram/
-|         |-instagram.scraper.ts
+|     ├-reddit/
+|     |   └-reddit.scraper.ts
+|     ├-linkedIn/
+|     |   └-linkedIn.scraper.ts
+|     └-instagram/
+|         └-instagram.scraper.ts
 |
 |---services/
-|     |-getSearchData.service.ts
-|     |-llm.service.ts
-|     |-nlp.service.ts
-|     |-pipeline.service.ts
-|     |-prompt.service.ts
-|     |-redditComment.service.ts
-|     |-search.service.ts
-|     |-word_scorer.service.ts
+|     ├-getSearchData.service.ts
+|     ├-llm.service.ts
+|     ├-nlp.service.ts
+|     ├-pipeline.service.ts
+|     ├-prompt.service.ts
+|     ├-redditComment.service.ts
+|     ├-search.service.ts
+|     └-word_scorer.service.ts
 |
 |---types/
-|     |-contentItem.ts
-|     |-keyword.ts
-|     |-provider.ts
-|     |-searchResult.ts
-|     |-token.ts
-|     |-express.d.ts
+|     ├-contentItem.ts
+|     ├-keyword.ts
+|     ├-provider.ts
+|     ├-searchResult.ts
+|     ├-token.ts
+|     └-express.d.ts
 |
 |---utils/
-|     |-appError.ts
-|     |-catchAsync.ts
+|     ├-appError.ts
+|     └-catchAsync.ts
 |
 |---app.ts
 |---server.ts
@@ -243,15 +243,13 @@ Tavily
 |--- results found -> return results
 |
 |--- empty / failure
-          ||
-          \/
+          ↓
          Brave
           |
           |--- results found -> return results
           |
           |--- empty / failure
-                    ||
-                    \/
+                    ↓
                   Serper
 ```              
 
@@ -279,20 +277,15 @@ site:instagram.com <keywords>
 
 ```text
 Provider failure
-      ||
-      \/
+      ↓
 Try fallback provider
-      ||
-      \/
+      ↓
 Another provider fails
-      ||
-      \/
+      ↓
 Try final provider
-      ||
-      \/
+      ↓
 No usable results
-      ||
-      \/
+      ↓
 Return partial/empty result
 ```
 
@@ -310,20 +303,15 @@ Return partial/empty result
 
 ```text
 Raw Content
-    ||
-    \/
+    ↓
 Relevance Filtering
-    ||
-    \/
+    ↓
 Pain point extraction
-    ||
-    \/
+    ↓
 Emotional tone
-    ||
-    \/
+    ↓
 Persona clues
-    ||
-    \/
+    ↓
 Structured JSON    
 ```
 
