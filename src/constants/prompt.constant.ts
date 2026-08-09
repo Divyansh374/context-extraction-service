@@ -141,7 +141,7 @@ For every input content item, return either NULL or an object with this structur
   }
 }
 
-The final response must be a JSON array containing one entry for each input content item.
+The final response must be a JSON array named "signals" containing one entry for each input content item.
 
 Example:
 

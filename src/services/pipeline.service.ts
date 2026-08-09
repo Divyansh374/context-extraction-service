@@ -6,7 +6,7 @@ import { initializeLLM } from "./llm.service.js";
 import { ContentItem } from "../types/contentItem.js";
 import { linkedInScraper } from "../scrapers/linkedIn/linkedIn.scraper.js";
 import { instagramScraper } from "../scrapers/instagram/instagram.scraper.js";
-import AppError from "../utils/AppError.js";
+import AppError from "../utils/appError.js";
 
 export interface PipelineInput {
     topic: string;

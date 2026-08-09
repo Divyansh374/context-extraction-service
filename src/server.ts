@@ -3,7 +3,8 @@ import "dotenv/config";
 const validEnvs = ["development", "production"];
 
 if (process.env.NODE_ENV && !validEnvs.includes(process.env.NODE_ENV)) {
-    console.log(`Invalid NODE_ENV=${process.env.NODE_ENV}. App is shutting down`);
+    console.error(`Invalid NODE_ENV=${process.env.NODE_ENV}. App is shutting down`);
+    process.exit(1);
 }
 
 process.on("uncaughtException", (err: Error) => {
@@ -16,8 +17,8 @@ process.on("uncaughtException", (err: Error) => {
 import app from "./app.js";
 import { Server } from "node:http";
 
-const port: string | number = process.env.PORT || 3000;
-const server: Server = app.listen(port, () => {
+const port: number = Number(process.env.PORT) || 3000;
+const server: Server = app.listen(port, "0.0.0.0", () => {
     console.log(`App running on port ${port}`);
 });
 

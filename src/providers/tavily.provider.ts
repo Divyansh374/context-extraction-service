@@ -3,7 +3,7 @@ import { SearchProvider } from "../types/provider.js";
 import { SearchResult } from "../types/searchResult.js";
 import { createHash } from "node:crypto";
 import { PROVIDER_TIMEOUT_MS } from "../constants/pipeline.constants.js";
-import AppError from "../utils/AppError.js";
+import AppError from "../utils/appError.js";
 
 const apiKey = process.env.TAVILY_API_KEY;
 

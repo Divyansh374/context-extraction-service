@@ -3,7 +3,7 @@ import { SearchProvider } from "../types/provider.js";
 import { SearchResult } from "../types/searchResult.js";
 import { fetchWithTimeout } from "../utils/fetchWithTimeout.js";
 import { PROVIDER_TIMEOUT_MS } from "../constants/pipeline.constants.js";
-import AppError from "../utils/AppError.js";
+import AppError from "../utils/appError.js";
 
 const apiKey = process.env.SERPER_API_KEY;
 

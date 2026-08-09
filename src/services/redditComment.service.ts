@@ -4,7 +4,7 @@ import {
     MINIMUM_UPVOTES,
 } from "../constants/pipeline.constants.js";
 import { Comment } from "../types/contentItem.js";
-import AppError from "../utils/AppError.js";
+import AppError from "../utils/appError.js";
 
 export const getComments = async (postId: string): Promise<Comment[]> => {
     let response, data;

@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction, response } from "express";
-import AppError from "../utils/AppError.js";
+import { Request, Response, NextFunction } from "express";
 import { executePipeline } from "../services/pipeline.service.js";
 import catchAsync from "../utils/catchAsync.js";
+import AppError from "../utils/appError.js";
 
 interface CustomBody {
     topic: string;

@@ -1,6 +1,6 @@
 import { ContentItem } from "../types/contentItem.js";
 import Groq from "groq-sdk";
-import AppError from "../utils/AppError.js";
+import AppError from "../utils/appError.js";
 import { createResearchPrompt } from "./prompt.service.js";
 
 const groq = new Groq({
