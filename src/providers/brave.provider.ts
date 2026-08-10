@@ -36,6 +36,7 @@ class BraveProvider implements SearchProvider {
                 },
                 PROVIDER_TIMEOUT_MS,
             );
+            console.log("[Brave] Searching...");
         } catch {
             throw new AppError(500, "Brave request failed");
         }

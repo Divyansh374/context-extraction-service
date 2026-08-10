@@ -37,6 +37,7 @@ class SerperProvider implements SearchProvider {
                 },
                 PROVIDER_TIMEOUT_MS,
             );
+            console.log("[Serper] Searching...");
         } catch {
             throw new AppError(500, "Serper request failed");
         }

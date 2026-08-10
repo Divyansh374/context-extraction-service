@@ -20,6 +20,7 @@ class TavilyProvider implements SearchProvider {
         const response = await tavilyClient.search(query, {
             timeout: PROVIDER_TIMEOUT_MS / 1000,
         });
+        console.log("[Tavily] Searching...");
 
         const searchResult: SearchResult[] = [];
 

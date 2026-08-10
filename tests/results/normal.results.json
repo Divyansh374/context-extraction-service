@@ -4,222 +4,29 @@
     "name": "cash-flow problem",
     "expectedStatus": 200,
     "actualStatus": 200,
-    "latencyMs": 26375.314318,
-    "passed": true,
-    "sources": {
-      "reddit": "failed",
-      "linkedIn": "success",
-      "instagram": "success"
-    },
-    "errorLog": []
+    "latencyMs": 1621.1866229999998,
+    "passed": false,
+    "errorLog": [
+      "sources is missing"
+    ]
   },
   {
     "id": "TC-NV-002",
     "name": "e-commerce providers problem",
     "expectedStatus": 200,
     "actualStatus": 200,
-    "latencyMs": 4262.949539000001,
-    "passed": true,
-    "sources": {
-      "reddit": "failed",
-      "linkedIn": "success",
-      "instagram": "success"
-    },
-    "errorLog": []
+    "latencyMs": 384.8807109999998,
+    "passed": false,
+    "errorLog": [
+      "sources is missing"
+    ]
   },
   {
     "id": "TC-NV-003",
     "name": "hospital demand problem",
     "expectedStatus": 200,
     "actualStatus": 200,
-    "latencyMs": 1006.7967089999984,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-004",
-    "name": "university education system problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 3923.642319999999,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-005",
-    "name": "manufacturing efficiency problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 426.0461890000006,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-006",
-    "name": "restaurant demand prediction problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 427.99043099999835,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-007",
-    "name": "delivery live routing problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 1027.4373449999985,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-008",
-    "name": "flight delay management problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 3085.7201919999934,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-009",
-    "name": "development tast prioritization problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 786.961252999994,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-010",
-    "name": "construction coordination problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 720.400870999998,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-011",
-    "name": "telecom customer experience problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 489.5446299999967,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-012",
-    "name": "online bank KYC verification problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 436.7667000000001,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-013",
-    "name": "streaming platforms recommendation problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 412.6903300000049,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-014",
-    "name": "insurance plan literacy among customers problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 762.1925110000011,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-015",
-    "name": "cloud computing cost problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 483.21458499999426,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-016",
-    "name": "mobile applications traffic handling problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 342.4596870000023,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-017",
-    "name": "live suspicious login activity tracking problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 390.67642100000376,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-018",
-    "name": "live customer preference tracking problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 495.9378590000051,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-019",
-    "name": "live demand tracking problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 352.7938739999954,
-    "passed": false,
-    "errorLog": [
-      "sources is missing"
-    ]
-  },
-  {
-    "id": "TC-NV-020",
-    "name": "customer concern problem",
-    "expectedStatus": 200,
-    "actualStatus": 200,
-    "latencyMs": 339.037298999996,
+    "latencyMs": 781.4535260000002,
     "passed": false,
     "errorLog": [
       "sources is missing"

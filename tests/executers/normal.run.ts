@@ -37,9 +37,8 @@ const runNormal = async () => {
             sources: data?.sources,
             errorLog: errors,
         });
+        await writeFile(resultsPath, JSON.stringify(resultContent, null, 2));
     }
-
-    await writeFile(resultsPath, JSON.stringify(resultContent, null, 2));
 };
 
 runNormal();
