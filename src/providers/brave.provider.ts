@@ -5,12 +5,6 @@ import { fetchWithTimeout } from "../utils/fetchWithTimeout.js";
 import { PROVIDER_TIMEOUT_MS } from "../constants/pipeline.constants.js";
 import AppError from "../utils/appError.js";
 
-const apiKey = process.env.BRAVE_API_KEY;
-
-if (!apiKey) {
-    throw new AppError(500, "BRAVE_API_KEY is not configured");
-}
-
 interface BraveResult {
     id?: string;
     title: string;
@@ -18,8 +12,13 @@ interface BraveResult {
     description: string;
 }
 
+const apiKey = process.env.BRAVE_API_KEY;
+
 class BraveProvider implements SearchProvider {
     async search(query: string): Promise<SearchResult[]> {
+        if (!apiKey) {
+            throw new AppError(500, "BRAVE_API_KEY is not configured");
+        }
         let response;
         try {
             response = await fetchWithTimeout(
