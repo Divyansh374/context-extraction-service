@@ -11,7 +11,7 @@ export const validate = (
 ) => {
     const errors: string[] = [];
     if (status !== testCase.expectedStatus) {
-        errors.push(`Expected status ${status} but received ${testCase.expectedStatus}`);
+        errors.push(`Expected status ${testCase.expectedStatus} but received ${status}`);
     }
 
     if (category === "normal-valid") validateNormalRequest(result, errors);

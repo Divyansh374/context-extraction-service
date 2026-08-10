@@ -1,0 +1,92 @@
+[
+  {
+    "id": "TC-IDT-001",
+    "name": "topic as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 77.015661,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-IDT-002",
+    "name": "industry as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 10.671992999999986,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-IDT-003",
+    "name": "industry as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 7.625020000000006,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-IDT-004",
+    "name": "industry as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 5.576077999999995,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-IDT-005",
+    "name": "industry as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 4.738778999999965,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-IDT-006",
+    "name": "industry as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 7.184635000000014,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-IDT-007",
+    "name": "industry as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 5.105412000000001,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-IDT-008",
+    "name": "industry as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 5.791388999999981,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-IDT-009",
+    "name": "industry as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 6.885392000000024,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-IDT-010",
+    "name": "industry as number",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 7.513848999999993,
+    "passed": true,
+    "errorLog": []
+  }
+]
