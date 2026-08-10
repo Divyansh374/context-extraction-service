@@ -1,0 +1,52 @@
+[
+  {
+    "id": "TC-UC-001",
+    "name": "Hindi Unicode input",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 4510.8981810000005,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-UC-002",
+    "name": "Emoji Unicode input",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 6361.1752320000005,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-UC-003",
+    "name": "Lone high surrogate in topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 5.832791999999245,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-UC-004",
+    "name": "Lone low surrogate in industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.1743290000013076,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-UC-005",
+    "name": "Mismatched surrogate pair",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.278113000000303,
+    "passed": true,
+    "errorLog": []
+  }
+]

@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { executePipeline } from "../services/pipeline.service.js";
 import catchAsync from "../utils/catchAsync.js";
 import AppError from "../utils/appError.js";
+import { hasInvalidUnicode } from "../utils/checkUnicode.js";
 
 interface CustomBody {
     topic: string;
@@ -29,6 +30,10 @@ export const validateRequest = (
         return next(new AppError(400, "Topic and industry fields should have strings as input"));
     }
 
+    if (hasInvalidUnicode(topic) || hasInvalidUnicode(industry)) {
+        return next(new AppError(400, "Invalid unicode characters"));
+    }
+
     topic = topic.trim();
     industry = industry.trim();
 
@@ -36,7 +41,7 @@ export const validateRequest = (
         return next(
             new AppError(
                 400,
-                "Topic should be atleast 15 characters and at most 300 characters long",
+                "Topic should be atleast 30 characters and at most 300 characters long",
             ),
         );
     }

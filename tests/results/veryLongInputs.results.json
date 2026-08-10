@@ -1,0 +1,51 @@
+[
+  {
+    "id": "TC-VL-001",
+    "name": "topic exactly at maximum length",
+    "expectedStatus": 200,
+    "actualStatus": 400,
+    "latencyMs": 31.563147000000015,
+    "passed": false,
+    "errorLog": [
+      "Expected status 200 but received 400"
+    ]
+  },
+  {
+    "id": "TC-VL-002",
+    "name": "topic exceeds maximum length",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.881832000000003,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-VL-003",
+    "name": "industry exactly at maximum length",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 7079.47167,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-VL-004",
+    "name": "industry exceeds maximum length",
+    "expectedStatus": 400,
+    "actualStatus": 200,
+    "latencyMs": 2385.565853,
+    "passed": false,
+    "errorLog": [
+      "Expected status 400 but received 200"
+    ]
+  },
+  {
+    "id": "TC-VL-005",
+    "name": "both fields exceed maximum length",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.8735470000010537,
+    "passed": true,
+    "errorLog": []
+  }
+]

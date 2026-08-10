@@ -1,0 +1,134 @@
+[
+  {
+    "id": "TC-WN-001",
+    "name": "leading whitespace in topic",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 4572.114446,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-WN-002",
+    "name": "trailing whitespace in topic",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 2954.8272480000005,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-WN-003",
+    "name": "leading and trailing whitespace in both fields",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 34289.235085,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-WN-004",
+    "name": "multiple spaces between words",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 31785.475092,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-WN-005",
+    "name": "tab whitespace around topic",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 33585.42233399999,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-WN-006",
+    "name": "newline whitespace around industry",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 30752.722674999997,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-WN-007",
+    "name": "mixed whitespace around both fields",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 32815.972898999986,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-WN-008",
+    "name": "topic becomes empty after trimming",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.7547020000056364,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-WN-009",
+    "name": "industry becomes empty after trimming",
+    "expectedStatus": 400,
+    "actualStatus": 200,
+    "latencyMs": 32650.055758000002,
+    "passed": false,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": [
+      "Expected status 400 but received 200"
+    ]
+  },
+  {
+    "id": "TC-WN-010",
+    "name": "whitespace-only topic and industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 2.9667499999923166,
+    "passed": true,
+    "errorLog": []
+  }
+]

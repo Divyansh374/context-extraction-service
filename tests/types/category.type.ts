@@ -6,4 +6,7 @@ export type Category =
     | "very-short-inputs"
     | "very-long-inputs"
     | "provider-fallback"
-    | "boundary-input";
+    | "boundary-input"
+    | "unicode-input"
+    | "whitespaces"
+    | "special";

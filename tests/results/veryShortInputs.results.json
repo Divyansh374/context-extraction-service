@@ -1,0 +1,49 @@
+[
+  {
+    "id": "TC-VS-001",
+    "name": "single-character topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 28.66872500000001,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-VS-002",
+    "name": "single-character industry",
+    "expectedStatus": 400,
+    "actualStatus": 200,
+    "latencyMs": 5091.580782,
+    "passed": false,
+    "errorLog": [
+      "Expected status 400 but received 200"
+    ]
+  },
+  {
+    "id": "TC-VS-003",
+    "name": "two-character topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.494203000000198,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-VS-004",
+    "name": "short but valid industry abbreviation",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 2376.003412,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-VS-005",
+    "name": "both inputs extremely short",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.8538290000005873,
+    "passed": true,
+    "errorLog": []
+  }
+]

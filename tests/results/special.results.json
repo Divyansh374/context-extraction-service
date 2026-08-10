@@ -1,0 +1,107 @@
+[
+  {
+    "id": "TC-SP-001",
+    "name": "punctuation in topic",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 9280.221965,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-SP-002",
+    "name": "hyphenated industry",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 5998.783153,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-SP-003",
+    "name": "ampersand in industry",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 7745.314813999999,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-SP-004",
+    "name": "parentheses in topic",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 2828.6678850000026,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-SP-005",
+    "name": "apostrophe in topic",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 4444.265732,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-SP-006",
+    "name": "slash in industry",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 4518.424118000003,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-SP-007",
+    "name": "colon and comma in topic",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 2377.6687059999967,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-SP-008",
+    "name": "numbers in topic and industry",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 4069.066058999997,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-SP-009",
+    "name": "symbols in topic",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 3662.439397000002,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-SP-010",
+    "name": "mixed punctuation and Unicode",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 3205.9916099999973,
+    "passed": true,
+    "errorLog": []
+  }
+]

@@ -16,7 +16,12 @@
     "test:empty-fields": "tsx tests/executers/emptyFields.run.ts",
     "test:invalid-data-types": "tsx tests/executers/invalidDataTypes.run.ts",
     "test:provider-fallback": "tsx tests/executers/providerFallback.run.ts",
-    "test:boundary-input": "tsx tests/executers/boundaryInput.run.ts"
+    "test:boundary-input": "tsx tests/executers/boundaryInput.run.ts",
+    "test:unicode": "tsx tests/executers/unicode.run.ts",
+    "test:very-long": "tsx tests/executers/veryLongInputs.run.ts",
+    "test:very-short": "tsx tests/executers/veryShortInputs.run.ts",
+    "test:whitespaces": "tsx tests/executers/whitespaces.run.ts",
+    "test:special": "tsx tests/executers/special.run.ts"
   },
   "keywords": [],
   "type": "module",
