@@ -21,6 +21,7 @@ class BraveProvider implements SearchProvider {
         }
         let response;
         try {
+            throw new Error("[TEST] Brave unavailable");
             response = await fetchWithTimeout(
                 `https://api.search.brave.com/res/v1/web/search?${new URLSearchParams({
                     q: query,

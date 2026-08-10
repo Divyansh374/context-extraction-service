@@ -23,7 +23,6 @@ class SerperProvider implements SearchProvider {
         let response;
 
         try {
-            throw new Error("[TEST] Serper unavailable");
             response = await fetchWithTimeout(
                 "https://google.serper.dev/search",
                 {
