@@ -17,6 +17,7 @@ const tavilyClient = tavily({
 
 class TavilyProvider implements SearchProvider {
     async search(query: string): Promise<SearchResult[]> {
+        throw new Error("[TEST] Tavily unavailable");
         const response = await tavilyClient.search(query, {
             timeout: PROVIDER_TIMEOUT_MS / 1000,
         });
