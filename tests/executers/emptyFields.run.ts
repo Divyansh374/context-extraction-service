@@ -1,20 +1,20 @@
 import { mkdir, access, writeFile } from "node:fs/promises";
 import { callExtractAPI } from "../utils/apiClient.js";
 import { validate } from "../utils/validator.js";
-import { missingFieldsRequests } from "../requests/missingFields.requests.js";
+import { emptyFieldsRequests } from "../requests/emptyFields.requests.js";
 import { TestResult } from "../types/testResult.type.js";
 import path from "node:path";
 
-const runMissingFields = async () => {
+const runEmptyFields = async () => {
     const resultsDir = path.join(process.cwd(), "tests", "results");
     await mkdir(resultsDir, { recursive: true });
 
-    const resultsPath = path.join(resultsDir, "missingFields.results.json");
+    const resultsPath = path.join(resultsDir, "emptyFields.results.json");
 
     await access(resultsPath);
 
     const resultContent: TestResult[] = [];
-    for (const testCase of missingFieldsRequests) {
+    for (const testCase of emptyFieldsRequests) {
         console.log(`Running ${testCase.id}`);
 
         const { status, latencyMs, data } = await callExtractAPI(testCase.body);
@@ -40,4 +40,4 @@ const runMissingFields = async () => {
     }
 };
 
-runMissingFields();
+runEmptyFields();

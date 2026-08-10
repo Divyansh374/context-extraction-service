@@ -1,0 +1,92 @@
+[
+  {
+    "id": "TC-EF-001",
+    "name": "empty topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 165.20801900000004,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-EF-002",
+    "name": "empty industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 13.951893000000041,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-EF-003",
+    "name": "both fields empty",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 13.01240800000005,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-EF-004",
+    "name": "whitespace-only topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 11.225133000000028,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-EF-005",
+    "name": "whitespace-only industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 13.459459000000038,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-EF-006",
+    "name": "newline-only topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 11.691486000000054,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-EF-007",
+    "name": "tab-only industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 11.375035000000025,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-EF-008",
+    "name": "empty topic with valid industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 8.075791999999979,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-EF-009",
+    "name": "valid topic with empty industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 14.405996999999957,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-EF-010",
+    "name": "empty strings with extra field",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 10.615887000000043,
+    "passed": true,
+    "errorLog": []
+  }
+]
