@@ -1,0 +1,11 @@
+[
+  {
+    "id": "TC-PF-001",
+    "name": "Tavily unavailable, fallback to Serper",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 2761.5541340000004,
+    "passed": true,
+    "errorLog": []
+  }
+]

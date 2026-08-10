@@ -14,7 +14,8 @@
     "test:normal": "tsx tests/executers/normal.run.ts",
     "test:missing-fields": "tsx tests/executers/missingFields.run.ts",
     "test:empty-fields": "tsx tests/executers/emptyFields.run.ts",
-    "test:invalid-data-types": "tsx tests/executers/invalidDataTypes.run.ts"
+    "test:invalid-data-types": "tsx tests/executers/invalidDataTypes.run.ts",
+    "test:provider-fallback": "tsx tests/executers/providerFallback.run.ts"
   },
   "keywords": [],
   "type": "module",

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "TC-PF-001",
+    "name": "All search providers unavailable",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 852.2072599999999,
+    "passed": true,
+    "errorLog": []
+  }
+]
