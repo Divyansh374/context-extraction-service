@@ -61,14 +61,9 @@ export const executePipeline = async (topic: string, industry: string, keywords:
         const currentPlatform = platforms[i];
 
         if (result.status === "fulfilled") {
-            console.log(
-                `[${currentPlatform}] fulfilled:`,
-                Array.isArray(result.value) ? `${result.value.length} items` : result.value,
-            );
             sources[currentPlatform] = "success";
             return result.value;
         } else {
-            console.log(`${currentPlatform} failed: ${result.reason}`);
             return [];
         }
     });

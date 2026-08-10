@@ -1,0 +1,16 @@
+[
+  {
+    "id": "TC-PF-003",
+    "name": "Only Tavily provider available",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 4386.003594999999,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  }
+]

@@ -9,7 +9,7 @@ const runProviderFallback = async () => {
     const resultsDir = path.join(process.cwd(), "tests", "results", "providerFallback");
     await mkdir(resultsDir, { recursive: true });
 
-    const resultsPath = path.join(resultsDir, "allUnavailable.results.json");
+    const resultsPath = path.join(resultsDir, "onlyTavilyAvailable.results.json");
 
     await access(resultsPath);
 
