@@ -1,10 +1,9 @@
+import { Category } from "./category.type.js";
+
 export interface TestCase {
     id: string;
-    category: string;
+    category: Category;
     name: string;
-    body: {
-        topic: string;
-        industry: string;
-    };
+    body: object;
     expectedStatus: number;
 }

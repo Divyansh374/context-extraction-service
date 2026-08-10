@@ -1,0 +1,92 @@
+[
+  {
+    "id": "TC-MF-001",
+    "name": "missing topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 123.635244,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-MF-002",
+    "name": "missing industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 8.669151000000056,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-MF-003",
+    "name": "missing topic and industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 9.577469999999948,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-MF-004",
+    "name": "topic omitted with different industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 11.332761000000005,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-MF-005",
+    "name": "industry omitted with different topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 12.386758999999984,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-MF-006",
+    "name": "topic omitted with manufacturing industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 11.172661999999946,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-MF-007",
+    "name": "industry omitted with education topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 10.277877999999987,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-MF-008",
+    "name": "topic omitted with hospitality industry",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 8.228070000000002,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-MF-009",
+    "name": "industry omitted with technology topic",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 9.57826,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-MF-010",
+    "name": "only unrelated field provided",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 7.5641990000000305,
+    "passed": true,
+    "errorLog": []
+  }
+]

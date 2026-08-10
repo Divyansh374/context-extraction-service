@@ -19,7 +19,10 @@ export const validateRequest = (
         return next(new AppError(400, "Enter a valid request"));
     }
 
-    const { topic, industry } = req.body;
+    let { topic, industry } = req.body;
+
+    topic = topic.trim();
+    industry = industry.trim();
 
     if (!topic || !industry) {
         return next(new AppError(400, "Specify both topic and industry"));
@@ -51,7 +54,9 @@ export const extractContent = catchAsync(
         let response;
         try {
             response = await executePipeline(topic, industry, keywords);
-        } catch {
+        } catch (error) {
+            console.error("[Pipeline] Failed:", error);
+
             res.status(200).json({
                 topic,
                 industry,

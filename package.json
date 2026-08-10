@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "test:typecheck": "tsc -p tests/tsconfig.json --noEmit",
     "test": "tsx tests/run.ts",
-    "test:normal": "tsx tests/executers/normal.run.ts"
+    "test:normal": "tsx tests/executers/normal.run.ts",
+    "test:missing-fields": "tsx tests/executers/missingFields.run.ts"
   },
   "keywords": [],
   "type": "module",

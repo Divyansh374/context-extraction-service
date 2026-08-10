@@ -1,4 +1,6 @@
-export const normalRequests = [
+import { TestCase } from "../types/testCase.type.js";
+
+export const normalRequests: TestCase[] = [
     {
         id: "TC-NV-001",
         category: "normal-valid",

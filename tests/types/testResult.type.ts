@@ -5,7 +5,7 @@ export interface TestResult {
     actualStatus: number | null;
     latencyMs: number;
     passed: boolean;
-    sources: {
+    sources?: {
         reddit?: "success" | "failed";
         linkedIn?: "success" | "failed";
         instagram?: "success" | "failed";
