@@ -32,7 +32,7 @@ export const validateRequest = (
     topic = topic.trim();
     industry = industry.trim();
 
-    if (topic.length < 15 || topic.length > 300) {
+    if (topic.length < 30 || topic.length > 300) {
         return next(
             new AppError(
                 401,
