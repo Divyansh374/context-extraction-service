@@ -35,7 +35,7 @@ export const validateRequest = (
     if (topic.length < 30 || topic.length > 300) {
         return next(
             new AppError(
-                401,
+                400,
                 "Topic should be atleast 15 characters and at most 300 characters long",
             ),
         );

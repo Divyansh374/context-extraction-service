@@ -5,7 +5,7 @@ import { VeryShortInputs } from "../requests/veryShortInputs.requests.js";
 import { TestResult } from "../types/testResult.type.js";
 import path from "node:path";
 
-const runNormal = async () => {
+const runVeryShortInputs = async () => {
     const resultsDir = path.join(process.cwd(), "tests", "results");
     await mkdir(resultsDir, { recursive: true });
 
@@ -40,4 +40,4 @@ const runNormal = async () => {
     }
 };
 
-runNormal();
+runVeryShortInputs();

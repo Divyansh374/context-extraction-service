@@ -1,0 +1,111 @@
+[
+  {
+    "id": "TC-BL-001",
+    "name": "topic exactly 300 characters",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 5040.742904999999,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-BL-002",
+    "name": "topic exceeds maximum by 1 character",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.9242629999998826,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-BL-003",
+    "name": "industry exactly 100 characters",
+    "expectedStatus": 200,
+    "actualStatus": 400,
+    "latencyMs": 3.8220799999999144,
+    "passed": false,
+    "errorLog": [
+      "Expected status 200 but received 400"
+    ]
+  },
+  {
+    "id": "TC-BL-004",
+    "name": "industry exceeds maximum by 1 character",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.0875539999997272,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-BL-005",
+    "name": "topic exactly 299 characters",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 5501.0736799999995,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-BL-006",
+    "name": "industry exactly 99 characters",
+    "expectedStatus": 200,
+    "actualStatus": 400,
+    "latencyMs": 3.5018899999995483,
+    "passed": false,
+    "errorLog": [
+      "Expected status 200 but received 400"
+    ]
+  },
+  {
+    "id": "TC-BL-007",
+    "name": "topic 300 and industry 100 characters",
+    "expectedStatus": 200,
+    "actualStatus": 200,
+    "latencyMs": 4780.802798000001,
+    "passed": true,
+    "sources": {
+      "reddit": "failed",
+      "linkedIn": "success",
+      "instagram": "success"
+    },
+    "errorLog": []
+  },
+  {
+    "id": "TC-BL-008",
+    "name": "topic 301 and industry 100 characters",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.197940000000017,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-BL-009",
+    "name": "topic 300 and industry 101 characters",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 3.1327760000003764,
+    "passed": true,
+    "errorLog": []
+  },
+  {
+    "id": "TC-BL-010",
+    "name": "topic 301 and industry 101 characters",
+    "expectedStatus": 400,
+    "actualStatus": 400,
+    "latencyMs": 2.4897909999999683,
+    "passed": true,
+    "errorLog": []
+  }
+]

@@ -5,4 +5,5 @@ export type Category =
     | "invalid-data-types"
     | "very-short-inputs"
     | "very-long-inputs"
-    | "provider-fallback";
+    | "provider-fallback"
+    | "boundary-input";

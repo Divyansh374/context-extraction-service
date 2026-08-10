@@ -1,20 +1,20 @@
 import { mkdir, access, writeFile } from "node:fs/promises";
 import { callExtractAPI } from "../utils/apiClient.js";
 import { validate } from "../utils/validator.js";
-import { invalidDataTypeRequests } from "../requests/invalidDataTypes.requests.js";
+import { boundaryInputRequests } from "../requests/boundaryInput.requests.js";
 import { TestResult } from "../types/testResult.type.js";
 import path from "node:path";
 
-const runInvalidDataTypes = async () => {
+const runBoundaryInput = async () => {
     const resultsDir = path.join(process.cwd(), "tests", "results");
     await mkdir(resultsDir, { recursive: true });
 
-    const resultsPath = path.join(resultsDir, "invalidDataTypes.results.json");
+    const resultsPath = path.join(resultsDir, "boundaryInput.results.json");
 
     await access(resultsPath);
 
     const resultContent: TestResult[] = [];
-    for (const testCase of invalidDataTypeRequests) {
+    for (const testCase of boundaryInputRequests) {
         console.log(`Running ${testCase.id}`);
 
         const { status, latencyMs, data } = await callExtractAPI(testCase.body);
@@ -34,10 +34,11 @@ const runInvalidDataTypes = async () => {
             actualStatus: status,
             latencyMs,
             passed,
+            sources: data?.sources,
             errorLog: errors,
         });
         await writeFile(resultsPath, JSON.stringify(resultContent, null, 2));
     }
 };
 
-runInvalidDataTypes();
+runBoundaryInput();
