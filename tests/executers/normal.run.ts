@@ -1,10 +1,18 @@
-import { writeFile } from "node:fs/promises";
+import { mkdir, access, writeFile } from "node:fs/promises";
 import { normalRequests } from "../requests/normal.requests.js";
 import { callExtractAPI } from "../utils/apiClient.js";
 import { validate } from "../utils/validator.js";
 import { TestResult } from "../types/testResult.type.js";
+import path from "node:path";
 
 const runNormal = async () => {
+    const resultsDir = path.join(process.cwd(), "tests", "results");
+    await mkdir(resultsDir, { recursive: true });
+
+    const resultsPath = path.join(resultsDir, "normal.results.json");
+
+    await access(resultsPath);
+
     const resultContent: TestResult[] = [];
     for (const testCase of normalRequests) {
         console.log(`Running ${testCase.id}`);
@@ -14,9 +22,9 @@ const runNormal = async () => {
         const { passed, errors } = validate(status, data, testCase);
 
         if (passed) {
-            console.log(`${testCase.id} - ✅ PASS`);
+            console.log(`-> ✅ PASS`);
         } else {
-            console.log(`${testCase.id} - ❌ FAIL`);
+            console.log(`-> ❌ FAIL`);
         }
 
         resultContent.push({
@@ -31,7 +39,7 @@ const runNormal = async () => {
         });
     }
 
-    await writeFile("../results/normal.results.json", JSON.stringify(resultContent, null, 2));
+    await writeFile(resultsPath, JSON.stringify(resultContent, null, 2));
 };
 
 runNormal();
