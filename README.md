@@ -315,6 +315,30 @@ Persona clues
 Structured JSON    
 ```
 
+## Test Results
+
+The API was tested against **100 test cases** covering request validation, boundary conditions, Unicode handling, whitespace/normalization, normal requests, and search-provider fallback scenarios.
+
+| Metric | Result |
+|--------|--------|
+| Total test cases | 100 |
+| Passed | 80 |
+| Application failures | 6 |
+| Blocked by external LLM rate limit | 14 |
+| Pass rate (all test cases) | 80% |
+| Pass rate (excluding rate-limited tests) | 93.02% |
+| Provider fallback scenarios tested | 5 |
+
+> **Note:** 14 tests were blocked by the Groq free-tier token limit (HTTP 429) rather than by application behavior. Excluding these externally blocked tests, the API passed **80 of 86 executable test cases (93.02%)**.
+
+### Architectural Testing
+
+Provider fallback behavior was tested by intentionally making providers unavailable and verifying that the pipeline continued according to the configured fallback order:
+
+**Tavily → Brave → Serper**
+
+A total of **5 provider-fallback scenarios** were tested, including provider unavailability and complete provider failure.
+
 ## Limitations
 
 - Search-engine results depend on what has already been indexed.
