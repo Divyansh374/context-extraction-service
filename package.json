@@ -21,7 +21,8 @@
     "test:very-long": "tsx tests/executers/veryLongInputs.run.ts",
     "test:very-short": "tsx tests/executers/veryShortInputs.run.ts",
     "test:whitespaces": "tsx tests/executers/whitespaces.run.ts",
-    "test:special": "tsx tests/executers/special.run.ts"
+    "test:special": "tsx tests/executers/special.run.ts",
+    "test:average": "tsx tests/utils/stats.ts"
   },
   "keywords": [],
   "type": "module",
