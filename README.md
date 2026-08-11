@@ -4,6 +4,12 @@ A Node.js/TypeScript microservice that collects relevant public content from
 Reddit, LinkedIn and Instagram-adjacent web results and extracts structured
 context signals using an LLM.
 
+## 🚀 Live API
+
+**Production Endpoint:** `https://context-extraction-service.onrender.com/api/v1/extract`
+
+The API is currently deployed on Render and can be accessed using the endpoint above.
+
 ## Features
 
 - Reddit content retrieval through PullPush
@@ -19,31 +25,34 @@ context signals using an LLM.
 
 ### 1. Architecture
 
-                   POST /api/v1/extract
-                           │
-                           ▼
-                    Input Validation
-                           │
-                           ▼
-                    Keyword Extraction
-                           │
-             ┌─────────────┴─────────────┐
-             ▼                           ▼
-       Reddit Scraper                Web Search
-         (PullPush)          (Tavily → Brave → Serper)
-             │                           │
-             └─────────────┬─────────────┘
-                           ▼
-                    ContentItem[]
-                           │
-                           ▼
-                    LLM Extraction
-                           │
-                           ▼
-                  Structured Signals
-                           │
-                           ▼
-                         JSON
+```
+               POST /api/v1/extract
+                       │
+                       ▼
+                Input Validation
+                       │
+                       ▼
+                Keyword Extraction
+                       │
+         ┌─────────────┴─────────────┐
+         ▼                           ▼
+   Reddit Scraper                Web Search
+     (PullPush)          (Tavily → Brave → Serper)
+         │                           │
+         └─────────────┬─────────────┘
+                       ▼
+                ContentItem[]
+                       │
+                       ▼
+                LLM Extraction
+                       │
+                       ▼
+              Structured Signals
+                       │
+                       ▼
+                     JSON
+            
+```
 
 ### 2. Project Structure
 
@@ -106,17 +115,18 @@ src/
 
 ### 3. Tech Stack
 
-|Technology|Purpose|
-|----------|-------|
-|Node.js|Runtime|
-|TypeScript|Type safety|
-|Express|HTTP API|
-|PullPush|Reddit data|
-|Tavily|Primary web search|
-|Brave Search|Secondary search fallback|
-|Serper|Final search fallback|
-|Groq|Context extraction|
-|GitHub|Source control|
+
+| Technology   | Purpose                   |
+| ------------ | ------------------------- |
+| Node.js      | Runtime                   |
+| TypeScript   | Type safety               |
+| Express      | HTTP API                  |
+| PullPush     | Reddit data               |
+| Tavily       | Primary web search        |
+| Brave Search | Secondary search fallback |
+| Serper       | Final search fallback     |
+| Groq         | Context extraction        |
+| GitHub       | Source control            |
 
 ### 4. Prerequisites
 
@@ -150,13 +160,14 @@ SERPER_API_KEY=<my-serper-api-key>
 GROQ_API_KEY=<my-groq-api-key>
 ```
 
-|Variable|Description|Required|
-|--------|-----------|--------|
-|PORT|Server Port|No|
-|TAVILY_API_KEY|Tavily search authentication|Yes|
-|BRAVE_API_KEY|Brave search authentication|Yes|
-|SERPER_API_KEY|Serper authentication|Yes|
-|GROQ_API_KEY|LLM authentication|Yes|
+
+| Variable       | Description                  | Required |
+| -------------- | ---------------------------- | -------- |
+| PORT           | Server Port                  | No       |
+| TAVILY_API_KEY | Tavily search authentication | Yes      |
+| BRAVE_API_KEY  | Brave search authentication  | Yes      |
+| SERPER_API_KEY | Serper authentication        | Yes      |
+| GROQ_API_KEY   | LLM authentication           | Yes      |
 
 ### 7. Running the Project
 
@@ -176,7 +187,9 @@ npm start
 ```http
 POST /api/v1/extract
 ```
+
 #### Description
+
 Accepts a startup topic and industry and returns structured context extracted from publicly available content.
 
 #### Request
@@ -220,19 +233,12 @@ Content-Type: application/json
 ### 9. Response Schema
 
 - contentId: Identifier of the source content.
-
 - painPoint: Specific problem extracted from the content.
-
 - emotionalValence: Emotional tone of the content.
-
 - personaSignals: Inferences that can be supported by the available content.
-
 - occupationClues: Occupation/profession clues.
-
 - lifeStage: Student / early-career / mid-career / senior / retired / unknown.
-
 - geography: City / state / region / unknown.
-
 - languageRegister: Formal / casual / mixed / regional.
 
 ### 10. Search Provider Fallback
@@ -251,24 +257,29 @@ Tavily
           |--- empty / failure
                     ↓
                   Serper
-```              
+```
 
 Web search providers are queried through a fallback chain. Tavily is attempted first, followed by Brave Search and finally Serper if the previous provider fails or returns no usable results.
 
 ### 11. Supported Sources
 
 #### Reddit
+
 Uses PullPush retreive Reddit content
 
 #### LinkedIn
+
 Does not directly scrape LinkedIn.
 Instead:
+
 ```text
 site:linkedin.com <keywords>
 ```
 
 #### Instagram
+
 Same approach:
+
 ```text
 site:instagram.com <keywords>
 ```
@@ -291,13 +302,14 @@ Return partial/empty result
 
 #### API Level Errors
 
-|Situation|Behaviour|
-|---------|---------|
-|Invalid request|```400 Bad Request```|
-|Search provider failure|Fallback|
-|All providers fail|Partial/clear failure response|
-|LLM failure|```500```/appropriate error|
-|Invalid LLM JSON|Handled by parser/error layer|
+
+| Situation               | Behaviour                      |
+| ----------------------- | ------------------------------ |
+| Invalid request         | ```400 Bad Request```          |
+| Search provider failure | Fallback                       |
+| All providers fail      | Partial/clear failure response |
+| LLM failure             | ```500```/appropriate error    |
+| Invalid LLM JSON        | Handled by parser/error layer  |
 
 ### 13. LLM Context Extraction
 
@@ -312,22 +324,23 @@ Emotional tone
     ↓
 Persona clues
     ↓
-Structured JSON    
+Structured JSON  
 ```
 
 ## Test Results
 
 The API was tested against **100 test cases** covering request validation, boundary conditions, Unicode handling, whitespace/normalization, normal requests, and search-provider fallback scenarios.
 
-| Metric | Result |
-|--------|--------|
-| Total test cases | 100 |
-| Passed | 80 |
-| Application failures | 6 |
-| Blocked by external LLM rate limit | 14 |
-| Pass rate (all test cases) | 80% |
+
+| Metric                                   | Result |
+| ---------------------------------------- | ------ |
+| Total test cases                         | 100    |
+| Passed                                   | 80     |
+| Application failures                     | 6      |
+| Blocked by external LLM rate limit       | 14     |
+| Pass rate (all test cases)               | 80%    |
 | Pass rate (excluding rate-limited tests) | 93.02% |
-| Provider fallback scenarios tested | 5 |
+| Provider fallback scenarios tested       | 5      |
 
 > **Note:** 14 tests were blocked by the Groq free-tier token limit (HTTP 429) rather than by application behavior. Excluding these externally blocked tests, the API passed **80 of 86 executable test cases (93.02%)**.
 
